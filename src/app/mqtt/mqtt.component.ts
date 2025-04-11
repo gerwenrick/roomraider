@@ -1,13 +1,4 @@
-import { Component } from '@angular/core';
-import {
-  IMqttMessage,
-  IMqttServiceOptions,
-  MqttService,
-  IPublishOptions,
-} from 'ngx-mqtt';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { IClientSubscribeOptions } from 'mqtt-browser';
-import { Subscription } from 'rxjs';
+import { Component, inject } from '@angular/core';
 
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
@@ -21,8 +12,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { connection } from '../app.config';
 import { CommonModule } from '@angular/common';
+import { MqttService } from 'ngx-mqtt';
+import { MqttHackService } from '../services/mqtt/mqtt.service';
 
 @Component({
   selector: 'app-mqtt',
@@ -45,110 +37,34 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mqtt.component.css',
 })
 export class MqttComponent {
-  constructor(
-    private readonly _mqttService: MqttService,
-    private readonly _snackBar: MatSnackBar
-  ) {
-    this.client = this._mqttService;
+  mqttService: MqttHackService = inject(MqttHackService);
 
-    this.createConnection();
-    this.doSubscribe();
+  connection = this.mqttService.connection;
+  isConnection: boolean = this.mqttService.isConnection;
+  subscription = this.mqttService.subscription;
+  subscribeSuccess: boolean = this.mqttService.subscribeSuccess;
+  publish = this.mqttService.publish;
+
+  receiveNews = this.mqttService.receiveNews;
+
+  qosList = this.mqttService.qosList;
+
+  createConnection(): void {
+    this.mqttService.createConnection();
   }
 
-  private curSubscription: Subscription | undefined;
-
-  connection = connection;
-
-  subscription = {
-    topic: 'hello/topic',
-    qos: 0,
-  };
-  publish = {
-    topic: 'hello/topic',
-    qos: 0,
-    payload: '{ "msg": "Hello, I am browser." }',
-  };
-  receiveNews = '';
-  qosList = [
-    { label: 0, value: 0 },
-    // { label: 1, value: 1 },
-    // { label: 2, value: 2 },
-  ];
-  client: MqttService | undefined;
-  isConnection = false;
-  subscribeSuccess = false;
-
-  createConnection() {
-    // Connection string, specifying the connection method through the protocol
-    // ws Unencrypted WebSocket connection
-    // wss Encrypted WebSocket connection
-    // mqtt Unencrypted TCP connection
-    // mqtts Encrypted TCP connection
-    // wxs WeChat Mini Program connection
-    // alis Alipay Mini Program connection
-    try {
-      this.client?.connect(this.connection as IMqttServiceOptions);
-    } catch (error) {
-      console.log('mqtt.connect error', error);
-    }
-    this.client?.onConnect.subscribe(() => {
-      this.isConnection = true;
-      console.log('Connection succeeded!');
-    });
-    this.client?.onError.subscribe((error: any) => {
-      this.isConnection = false;
-      console.log('Connection failed', error);
-    });
-    this.client?.onMessage.subscribe((packet: any) => {
-      this.receiveNews = this.receiveNews.concat(
-        [packet.payload.toString(), '\n'].join()
-      );
-      console.log(
-        `Received message ${packet.payload.toString()} from topic ${
-          packet.topic
-        }`
-      );
-    });
+  doSubscribe(): void {
+    this.mqttService.doSubscribe();
+  }
+  doPublish(): void {
+    this.mqttService.doPublish();
   }
 
-  doSubscribe() {
-    const { topic, qos } = this.subscription;
-    if (!this.client) {
-      this._snackBar.open('There is no mqtt client available...', 'close');
-      return;
-    }
-    this.curSubscription = this.client
-      .observe(topic, { qos } as IClientSubscribeOptions)
-      .subscribe((message: IMqttMessage) => {
-        this.subscribeSuccess = true;
-        const msg = ['Received message: ', message.payload.toString()].join(
-          ' '
-        );
-        this._snackBar.open(msg, 'close');
-        console.log(message);
-      });
+  doUnSubscribe(): void {
+    this.mqttService.doUnSubscribe();
   }
 
-  // Unsubscribe
-  doUnSubscribe() {
-    this.curSubscription?.unsubscribe();
-    this.subscribeSuccess = false;
-  }
-
-  // Send message
-  doPublish() {
-    const { topic, qos, payload } = this.publish;
-    console.log(this.publish);
-    this.client?.unsafePublish(topic, payload, { qos } as IPublishOptions);
-  }
-
-  destroyConnection() {
-    try {
-      this.client?.disconnect(true);
-      this.isConnection = false;
-      console.log('Successfully disconnected!');
-    } catch (error: any) {
-      console.log('Disconnect failed', error.toString());
-    }
+  destroyConnection(): void {
+    this.mqttService.destroyConnection();
   }
 }
