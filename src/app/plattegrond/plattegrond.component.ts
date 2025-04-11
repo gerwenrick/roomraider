@@ -10,8 +10,4 @@ import {MqttHackService} from '../services/mqtt/mqtt.service';
 export class PlattegrondComponent {
   mqttHackService: MqttHackService = inject(MqttHackService);
   public plattegrond = this.mqttHackService.roomAvailability;
-
-  constructor() {
-    console.log(this.plattegrond['lovelace']);
-  }
 }

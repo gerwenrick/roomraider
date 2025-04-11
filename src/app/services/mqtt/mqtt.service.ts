@@ -35,7 +35,40 @@ export class MqttHackService {
     topic: 'europalaan/lovelace',
     qos: 1,
   },{
+    topic: 'europalaan/engelbart',
+    qos: 1,
+  },{
+    topic: 'europalaan/shannon',
+    qos: 1,
+  },{
+    topic: 'europalaan/turing',
+    qos: 1,
+  },{
+    topic: 'europalaan/conway',
+    qos: 1,
+  },{
+    topic: 'europalaan/hopper',
+    qos: 1,
+  },{
     topic: 'europalaan/hamilton',
+    qos: 1,
+  },{
+    topic: 'europalaan/torvalds',
+    qos: 1,
+  },{
+    topic: 'europalaan/ritchie',
+    qos: 1,
+  },{
+    topic: 'europalaan/stallman',
+    qos: 1,
+  },{
+    topic: 'europalaan/cerfkahn',
+    qos: 1,
+  },{
+    topic: 'europalaan/bernerslee',
+    qos: 1,
+  },{
+    topic: 'europalaan/hinton',
     qos: 1,
   }];
 
