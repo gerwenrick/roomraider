@@ -1,5 +1,5 @@
 type Adress = 'europalaan';
-type Topics =
+export type Topics =
   | 'turing'
   | 'shannon'
   | 'engelbart'

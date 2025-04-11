@@ -13,9 +13,4 @@ export const routes: Routes = [
         (m) => m.PlattegrondComponent
       ),
   },
-  {
-    path: 'config',
-    loadComponent: () =>
-      import('./mqtt/mqtt.component').then((m) => m.MqttComponent),
-  },
 ];
