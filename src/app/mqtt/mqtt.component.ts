@@ -43,9 +43,6 @@ export class MqttComponent {
   isConnection: boolean = this.mqttService.isConnection;
   subscription = this.mqttService.subscription;
   subscribeSuccess: boolean = this.mqttService.subscribeSuccess;
-  publish = this.mqttService.publish;
-
-  receiveNews = this.mqttService.receiveNews;
 
   qosList = this.mqttService.qosList;
 
@@ -55,13 +52,6 @@ export class MqttComponent {
 
   doSubscribe(): void {
     this.mqttService.doSubscribe();
-  }
-  doPublish(): void {
-    this.mqttService.doPublish();
-  }
-
-  doUnSubscribe(): void {
-    this.mqttService.doUnSubscribe();
   }
 
   destroyConnection(): void {

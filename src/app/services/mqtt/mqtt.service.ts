@@ -3,7 +3,6 @@ import {
   IMqttMessage,
   IMqttServiceOptions,
   MqttService as NgxMqttService,
-  IPublishOptions,
 } from 'ngx-mqtt';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IClientSubscribeOptions } from 'mqtt-browser';
@@ -34,17 +33,16 @@ export class MqttHackService {
   private readonly client: NgxMqttService | undefined = this._mqttService;
   public isConnection = false;
   public subscribeSuccess = false;
-  public receiveNews = '';
+  public roomAvailability: {room:string, availability:boolean}[] = [
+    {
+      room: 'lovelace',
+      availability: false
+    }
+  ]
 
   public subscription = {
-    topic: 'hello/topic',
+    topic: 'europalaan/lovelace',
     qos: 0,
-  };
-
-  public publish = {
-    topic: 'hello/topic',
-    qos: 0,
-    payload: '{ "msg": "Hello, I am browser." }',
   };
 
   public qosList = [{ label: 0, value: 0 }];
@@ -81,9 +79,10 @@ export class MqttHackService {
         payload: packet.payload.toString(),
       };
       messageSubject.next(message);
-      this.receiveNews = this.receiveNews.concat(
-        [message.payload, '\n'].join()
-      );
+
+      // @ts-ignore
+      this.roomAvailability.find(entry => entry.room == message.topic.split('/')[1]).availability = message.payload.toString() == 'FREE'
+
       console.log(
         `Received message ${message.payload} from topic ${message.topic}`
       );
@@ -117,17 +116,6 @@ export class MqttHackService {
         this._snackBar.open(msg, 'close');
         console.log(message);
       });
-  }
-
-  doUnSubscribe(): void {
-    this.curSubscription?.unsubscribe();
-    this.subscribeSuccess = false;
-  }
-
-  doPublish(): void {
-    const { topic, qos, payload } = this.publish;
-    console.log(this.publish);
-    this.client?.unsafePublish(topic, payload, { qos } as IPublishOptions);
   }
 
   destroyConnection(): void {

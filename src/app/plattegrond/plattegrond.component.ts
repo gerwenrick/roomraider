@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
-import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
+import {Component, inject} from '@angular/core';
+import {MqttHackService} from '../services/mqtt/mqtt.service';
+import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-plattegrond',
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './plattegrond.component.html',
   styleUrl: './plattegrond.component.css',
 })
-export class PlattegrondComponent {}
+export class PlattegrondComponent {
+  mqttHackService: MqttHackService = inject(MqttHackService);
+  public data = this.mqttHackService.roomAvailability
+}
