@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { MqttComponent } from './mqtt/mqtt.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [MqttComponent],
+  imports: [RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'roomrAIder';
-}
+export class AppComponent {}

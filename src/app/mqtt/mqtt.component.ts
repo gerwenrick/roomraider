@@ -22,10 +22,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { connection } from '../app.config';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mqtt',
   imports: [
+    CommonModule,
     MatCardModule,
     MatGridListModule,
     MatFormFieldModule,
@@ -48,6 +50,9 @@ export class MqttComponent {
     private readonly _snackBar: MatSnackBar
   ) {
     this.client = this._mqttService;
+
+    this.createConnection();
+    this.doSubscribe();
   }
 
   private curSubscription: Subscription | undefined;
@@ -55,19 +60,19 @@ export class MqttComponent {
   connection = connection;
 
   subscription = {
-    topic: 'topictest/browser',
+    topic: 'hello/topic',
     qos: 0,
   };
   publish = {
-    topic: 'topictest/browser',
+    topic: 'hello/topic',
     qos: 0,
     payload: '{ "msg": "Hello, I am browser." }',
   };
   receiveNews = '';
   qosList = [
     { label: 0, value: 0 },
-    { label: 1, value: 1 },
-    { label: 2, value: 2 },
+    // { label: 1, value: 1 },
+    // { label: 2, value: 2 },
   ];
   client: MqttService | undefined;
   isConnection = false;

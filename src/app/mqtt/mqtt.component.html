@@ -1,4 +1,5 @@
 <div class="home-container">
+  <h1>MQTT</h1>
   <mat-card class="configCard">
     <div class="emq-title">Configuration</div>
     <form class="config-form">
@@ -27,7 +28,7 @@
             <input matInput [value]="connection.clientId" />
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile>
+        <!-- <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
             <input matInput [value]="connection.username" />
@@ -38,7 +39,7 @@
             <mat-label>Password</mat-label>
             <input matInput [value]="connection.password" />
           </mat-form-field>
-        </mat-grid-tile>
+        </mat-grid-tile> -->
       </mat-grid-list>
     </form>
     <mat-grid-list cols="8" rowHeight="4:1">
@@ -48,7 +49,9 @@
         </button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button mat-raised-button color="warn" (click)="destroyConnection()" *ngIf="isConnection">Disconnect</button>
+        @if (isConnection) {
+        <button mat-raised-button color="warn" (click)="destroyConnection()">Disconnect</button>
+        }
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>
@@ -67,9 +70,11 @@
           <mat-form-field appearance="fill">
             <mat-label>QoS</mat-label>
             <mat-select [(ngModel)]="subscription.qos" [ngModelOptions]="{standalone: true}">
-              <mat-option *ngFor="let item of qosList" [value]="item.value">
+              @for (item of qosList; track item) {
+              <mat-option [value]="item.value">
                 {{ item.label }}
               </mat-option>
+              }
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
@@ -82,7 +87,9 @@
         </button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button mat-raised-button color="warn" (click)="doUnSubscribe()" *ngIf="subscribeSuccess">Unsubscribe</button>
+        @if (subscribeSuccess) {
+        <button mat-raised-button color="warn" (click)="doUnSubscribe()">Unsubscribe</button>
+        }
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>
@@ -107,9 +114,11 @@
           <mat-form-field appearance="fill">
             <mat-label>QoS</mat-label>
             <mat-select [(ngModel)]="subscription.qos" [ngModelOptions]="{standalone: true}">
-              <mat-option *ngFor="let item of qosList" [value]="item.value">
+              @for (item of qosList; track item) {
+              <mat-option [value]="item.value">
                 {{ item.label }}
               </mat-option>
+              }
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
@@ -117,7 +126,9 @@
     </form>
     <mat-grid-list cols="8" rowHeight="4:1">
       <mat-grid-tile>
-        <button mat-raised-button color="primary" *ngIf="isConnection" (click)="doPublish()">{{ 'Publish' }}</button>
+        @if (isConnection) {
+        <button mat-raised-button color="primary" (click)="doPublish()">{{ 'Publish' }}</button>
+        }
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>

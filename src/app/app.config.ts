@@ -10,16 +10,16 @@ import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
 
 export const connection: IMqttServiceOptions = {
   hostname: '10.50.0.181',
-  port: 1883,
+  port: 9001,
   path: '/',
   clean: true,
-  connectTimeout: 4000,
-  reconnectPeriod: 4000,
+  connectTimeout: 1000,
+  reconnectPeriod: 1000,
   clientId: 'custom_roomraiders',
   // username: '',
   // password: '',
-  protocol: 'mqtt' as any,
-  connectOnCreate: false,
+  protocol: 'ws',
+  connectOnCreate: true,
 };
 
 export const appConfig: ApplicationConfig = {
