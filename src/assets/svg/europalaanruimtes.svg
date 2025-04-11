@@ -11,16 +11,16 @@
     <g>
       <rect x="0" y="0" width="1130" height="690" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
     </g>
-    <g id="lovelace">
+    <g class="meeting-room" id="lovelace">
       <rect x="0" y="320" width="120" height="200" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/>
     </g>
-    <g id="engelbart">
+    <g class="meeting-room" id="engelbart">
       <rect x="190" y="320" width="120" height="90" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/>
     </g>
-    <g id="shannon">
+    <g class="meeting-room" id="shannon">
       <rect x="190" y="410" width="120" height="90" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/>
     </g>
-    <g id="turing">
+    <g class="meeting-room" id="turing">
       <rect x="190" y="500" width="120" height="90" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/>
     </g>
     <g>
@@ -37,31 +37,31 @@
       <rect x="310" y="100" width="120" height="20" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)"
             pointer-events="all"/>
     </g>
-    <g id="conway">
+    <g class="meeting-room" id="conway">
       <rect x="416" y="15" width="120" height="90" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(90,476,60)"
             pointer-events="all"/>
     </g>
-    <g id="hopper">
+    <g class="meeting-room" id="hopper">
       <rect x="510" y="15" width="120" height="90" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(90,570,60)"
             pointer-events="all"/>
     </g>
-    <g id="hamilton">
+    <g class="meeting-room" id="hamilton">
       <rect x="604" y="15" width="120" height="90" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(90,664,60)"
             pointer-events="all"/>
     </g>
-    <g id="torvalds">
+    <g class="meeting-room" id="torvalds">
       <rect x="698" y="15" width="120" height="90" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(90,758,60)"
             pointer-events="all"/>
     </g>
-    <g xmlns="http://www.w3.org/2000/svg" class="meetingroom" id="lovelace">
+    <g xmlns="http://www.w3.org/2000/svg" class="meetingroom" class="meeting-room" id="lovelace">
       <rect x="792" y="15" width="120" height="90" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)"
             transform="rotate(90,852,60)" pointer-events="all"/>
     </g>
-    <g id="ritchie">
+    <g class="meeting-room" id="ritchie">
       <rect x="905" y="0" width="50" height="50" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(90,930,25)"
             pointer-events="all"/>
     </g>
-    <g id="stallman">
+    <g class="meeting-room" id="stallman">
       <rect x="905" y="55" width="50" height="50" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(90,930,80)"
             pointer-events="all"/>
     </g>
@@ -69,15 +69,15 @@
       <rect x="1020" y="15" width="70" height="60" rx="9" ry="9" fill="#ffe6cc" stroke="#d79b00"
             transform="rotate(90,1055,45)" pointer-events="all"/>
     </g>
-    <g id="cerfkahn">
+    <g class="meeting-room" id="cerfkahn">
       <rect x="1070" y="160" width="60" height="90" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(-180,1100,205)"
             pointer-events="all"/>
     </g>
-    <g id="bernerslee">
+    <g class="meeting-room" id="bernerslee">
       <rect x="1006" y="160" width="60" height="90" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(-180,1036,205)"
             pointer-events="all"/>
     </g>
-    <g id="hinton">
+    <g class="meeting-room" id="hinton">
       <rect x="1005" y="255" width="120" height="120" fill="#dae8fc" stroke="#6c8ebf" transform="rotate(90,1065,315)"
             pointer-events="all"/>
     </g>

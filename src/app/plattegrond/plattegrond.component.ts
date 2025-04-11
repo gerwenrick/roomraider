@@ -3,9 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-plattegrond',
   imports: [],
-  templateUrl: '../../assets/svg/europalaanruimtes.svg',
-  styleUrl: './plattegrond.component.css'
+  templateUrl: './plattegrond.component.html',
+  styleUrl: './plattegrond.component.css',
 })
-export class PlattegrondComponent {
-
-}
+export class PlattegrondComponent {}
